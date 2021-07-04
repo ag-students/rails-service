@@ -1,0 +1,26 @@
+FROM ruby:2.7.3-alpine3.12
+
+ENV PROJECT_ROOT=/app \
+    WD_INSTALL_DIR=/home/webdrivers
+WORKDIR $PROJECT_ROOT
+
+RUN apk update && \
+    apk add -u --no-cache --progress \
+    build-base postgresql-dev postgresql-client openssh git make \
+    chromium chromium-chromedriver nodejs-current imagemagick npm cmake less graphviz \
+    ttf-opensans yarn tzdata
+
+RUN cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+
+RUN gem install bundler:2.1.4
+
+COPY Gemfile* $PROJECT_ROOT/
+RUN bundle check || \
+    CFLAGS="-Wno-cast-function-type" \
+    BUNDLE_FORCE_RUBY_PLATFORM=1 \
+    bundle install --retry 4
+
+COPY package.json yarn.lock $PROJECT_ROOT/
+RUN yarn install --check-files
+
+RUN mkdir /home/webdrivers && ln -s /usr/bin/chromedriver /home/webdrivers/chromedriver
