@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'home/index'
+  get '/login' => 'login#create'
+
   root to: 'home#index'
+
 end
