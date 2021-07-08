@@ -1,5 +1,6 @@
 :root {
   --main-bg: #2064fc;
+  --secondary-bg: #3d8b60;
 }
 
 header {
@@ -9,6 +10,10 @@ header {
 
 .main-bg {
   background: var(--main-bg) !important;
+}
+
+.secondary-bg {
+  background: var(--secondary-bg) !important;
 }
 
 input:focus,
@@ -26,4 +31,8 @@ button:focus {
 .btn,
 input {
   border-radius: 1 !important;
+}
+
+.center-label {
+  text-align: center;
 }
