@@ -5,7 +5,6 @@ on: [pull_request]
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: postgres:10
@@ -78,6 +77,17 @@ jobs:
 
   linters:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:10
+        ports: [ '5432:5432' ]
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout Repository
@@ -97,6 +107,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
+      - name: Setup DataBase
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/rails-service_test
+          RAILS_ENV: test
+          RAILS_SERVICE_DATABASE_PASSWORD: password
+        run:
+          bundle exec rake db:setup
+
       - name: Run Reek
         uses: reviewdog/action-reek@v1
         with:
@@ -115,3 +133,24 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
 
+      - name: Run Brakeman
+        uses: reviewdog/action-brakeman@v1
+        with:
+          brakeman_version: gemfile
+          github_token: ${{ secrets.github_token }}
+
+      - name: Run Haml-lint
+        run:
+          bundle exec haml-lint
+
+      - name: Run Traceroute
+        run:
+          bundle exec rake traceroute
+
+      - name: Run Database Consistency
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/rails-service_test
+          RAILS_ENV: test
+          RAILS_SERVICE_DATABASE_PASSWORD: password
+        run:
+          bundle exec database_consistency

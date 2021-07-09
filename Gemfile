@@ -18,15 +18,24 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'brakeman'
+  gem 'haml-lint', require: false
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'railroady'
   gem 'reek', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'database_consistency'
+  gem 'traceroute'
 end
 
 group :development do
+  gem 'annotate'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
