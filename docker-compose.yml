@@ -1,19 +1,4 @@
 version: '3.7'
-x-rails-service-context:
-  context: .
-  dockerfile: Dockerfile.dev
-x-rails-service-env:
-  DATABASE_URL: 'postgresql://postgres@db/rails-service_development'
-  RAILS_LOG_TO_STDOUT: 'true'
-  RAILS_SERVE_STATIC_FILES: 'true'
-  RAILS_ENV: development
-  SECRET_KEY_BASE: ''
-  DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: 'true'
-  NODE_ENV: development
-x-rails-service-volumes:
-  volumes:
-    - 'bundle:/usr/local/bundle:cached'
-    - '.:/app:cached'
 services:
   db:
     image: 'postgres:10-alpine'

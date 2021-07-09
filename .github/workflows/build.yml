@@ -1,0 +1,117 @@
+name: Build
+
+on: [pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:10
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.3
+          bundler-cache: true
+
+      - name: Cache Ruby Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install dependent libraries
+        run:
+          sudo apt-get -yqq install libpq-dev
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.17.0
+
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: JS package cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+
+      - name: Run Tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/rails-service_test
+          RAILS_ENV: test
+          RAILS_SERVICE_DATABASE_PASSWORD: password
+        run: |
+          bundle exec rake db:setup
+          COVERAGE=true bundle exec rspec  --require rails_helper
+
+      - name: Upload Code Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage/
+
+  linters:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.3
+          bundler-cache: true
+
+      - name: Cache Ruby Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Run Reek
+        uses: reviewdog/action-reek@v1
+        with:
+          reek_version: gemfile
+          github_token: ${{ secrets.github_token }}
+
+      - name: Run Rubocop
+        uses: reviewdog/action-rubocop@v1
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile rubocop-performance:gemfile
+          github_token: ${{ secrets.github_token }}
+
+      - name: Run Hadolint
+        uses: reviewdog/action-hadolint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+

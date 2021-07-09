@@ -47,8 +47,6 @@ yarn-debug.log*
 
 /coverage
 
-/config/database.yml
-
 # Generated error pages by Errgent gem
 /public/403.html
 /public/404.html

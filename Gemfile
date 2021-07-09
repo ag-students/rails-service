@@ -18,6 +18,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'reek', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'rspec-rails', '~> 5.0.0'
 end
 
