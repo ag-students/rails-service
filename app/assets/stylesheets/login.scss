@@ -1,0 +1,38 @@
+:root {
+  --main-bg: #2064fc;
+  --secondary-bg: #3d8b60;
+}
+
+header {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.main-bg {
+  background: var(--main-bg) !important;
+}
+
+.secondary-bg {
+  background: var(--secondary-bg) !important;
+}
+
+input:focus,
+button:focus {
+  border: 1px solid var(--main-bg) !important;
+  box-shadow: none !important;
+}
+
+.form-check-input:checked {
+  background-color: var(--main-bg) !important;
+  border-color: var(--main-bg) !important;
+}
+
+.card,
+.btn,
+input {
+  border-radius: 1 !important;
+}
+
+.center-label {
+  text-align: center;
+}
