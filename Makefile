@@ -25,6 +25,11 @@ app-rails-service-yarn:
 app-rails-service-bundle:
 	docker-compose run --rm rails-service bundle install
 
+app-annotate-models:
+	docker-compose run --rm rails-service annotate --models
+
+app-railroady:
+	docker-compose run --rm rails-service rake diagram:all
 
 app-db-psql:
 	docker-compose run --rm rails-service psql -d rails-service_development -U postgres -W -h db
@@ -47,6 +52,7 @@ app-db-reset:
 	docker-compose run --rm rails-service rails db:reset
 
 app-db-drop:
+	docker-compose run --rm rails-service bin/rails db:environment:set RAILS_ENV=development
 	docker-compose run --rm rails-service rails db:drop
 
 

@@ -18,7 +18,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
@@ -39,6 +39,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: 'localhost:8080' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { adress: 'localhost', port: 1025 }
+
+  # config.action_mailer.delivery_method = :stmp
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -15,6 +15,8 @@ AllCops:
     - 'vendor/**/*'
     - 'db/**/*'
     - 'config/initializers/simple_form.*'
+    - app/models/appointment.rb
+    - config/environments/development.rb
 
 RSpec/RepeatedDescription:
   Exclude:
@@ -31,6 +33,10 @@ RSpec/NestedGroups:
 
 Metrics/ClassLength:
   Max: 150
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
 
 Layout/LineLength:
   Max: 120
