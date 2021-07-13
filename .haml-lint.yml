@@ -1,0 +1,45 @@
+linters:
+  AltText:
+    enabled: true # default false
+
+  ConsecutiveComments:
+    enabled: false
+
+  IdNames:
+    style: snake_case
+
+  LeadingCommentSpace:
+    enabled: false
+
+  LineLength:
+    max: 120
+
+  MultilinePipe:
+    enabled: false
+
+  RuboCop:
+    # These cops are incredibly noisy when it comes to HAML templates, so we
+    # ignore them.
+    ignored_cops:
+      #- Lint/BlockAlignment
+      #- Lint/EndAlignment
+      - Lint/Void
+      - Layout/LineLength
+      #- Layout/AlignParameters
+      #- Layout/ElseAlignment
+      - Layout/EmptyLineAfterGuardClause
+      #- Layout/EndOfLine
+      #- Layout/IndentationWidth
+      - Layout/LeadingCommentSpace # added
+      - Layout/TrailingBlankLines
+      - Layout/TrailingEmptyLines
+      #- Layout/TrailingWhitespace
+      - Metrics/BlockLength
+      - Metrics/BlockNesting
+      - Metrics/LineLength
+      #- Naming/FileName
+      - Style/FrozenStringLiteralComment
+      - Style/IfUnlessModifier
+      #- Style/Next
+      #- Style/WhileUntilModifier
+      - Rails/LinkToBlank

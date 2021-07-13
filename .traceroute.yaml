@@ -1,0 +1,8 @@
+ignore_unreachable_actions:
+  - rails\/.+
+  - devise[\/#].+
+  - callbacks#.+
+ignore_unused_routes:
+  - rails\/.+
+  - devise[\/#].+
+  - callbacks#.+
