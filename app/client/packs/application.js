@@ -3,7 +3,7 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 
-require("./components/Profile");
+require("../packs/components/Profile");
 require("bootstrap");
 import "bootstrap/dist/css/bootstrap";
 
