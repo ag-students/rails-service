@@ -1,0 +1,77 @@
+!!!
+%html{ lang: 'ru' }
+  %head
+    %meta{ charset: 'UTF-8' }/
+    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
+    %title Войти в систему
+    %link{ href: 'css/home.css', rel: 'stylesheet' }/
+  %body.main-bg
+    / Navigation
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top#main_nav
+      .container.px-4
+        %a.navbar-brand{ href: '/' } Russian QR-Code
+        %button.navbar-toggler{ 'aria-controls': 'navbar_responsive',
+          'aria-expanded': 'false',
+          'aria-label': 'Toggle navigation',
+          'data-bs-target': '#navbar_responsive',
+          'data-bs-toggle': 'collapse',
+          type: 'button' }
+          %span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbar_responsive
+          %ul.navbar-nav.ms-auto
+            %li.nav-item
+              %a.nav-link{ href: '/signup' } Зарегистрироваться
+            %li.nav-item
+              %a.nav-link{ href: '/login' } Войти
+    / Login Form
+    %header.container
+      .row.justify-content-center.mt-5
+        .col-lg-6.col-md-6.col-sm-6
+          .card.shadow
+            .card-title.text-center.border-bottom
+              %h2.p-3 Регистрация
+            .card-body
+              %form
+                .mb-4
+                  %label.form-label{ for: 'surname' } Фамилия
+                  %input.form-control#surname{ type: 'text' }/
+                .mb-4
+                  %label.form-label{ for: 'name' } Имя
+                  %input.form-control#name{ type: 'text' }/
+                .mb-4
+                  %label.form-label{ for: 'middlename' } Отчество
+                  %input.form-control#middlename{ type: 'text' }/
+                .mb-0
+                  %label.form-label{ for: 'gender' } Пол
+                .mb-2
+                  %input.form-check-input#checkbox_male{ type: 'checkbox' }/
+                  %label.form-label{ for: 'checkbox_male' } Мужчина
+                .mb-4
+                  %input.form-check-input#checkbox_female{ type: 'checkbox' }/
+                  %label.form-label{ for: 'checkbox_female' } Женщина
+                .mb-4
+                  %label.form-label{ for: 'birthday' } Дата рождения
+                  %input.form-control#birthday{ type: 'text' }/
+                .mb-4
+                  %label.form-label{ for: 'phone' } Телефон
+                  %input.form-control#phone{ type: 'text' }/
+                .mb-4
+                  %label.form-label{ for: 'password' } Пароль
+                  %input.form-control#password{ type: 'password' }/
+                .mb-4
+                  %label.form-label{ for: 'double_password' } Введите еще раз пароль
+                  %input.form-control#double_password{ type: 'password' }/
+                .mb-4
+                  %input.form-check-input#acceptance{ type: 'checkbox' }/
+                  %label.form-label{ for: 'acceptance' } Я даю согласие на обработку персональных данных
+                .d-grid
+                  %button.btn.text-light.main-bg{ type: 'submit' } Зарегистрироваться
+                .center-label
+                  .mt-4
+                    %label.form-label{ for: 'register' } Уже зарегистрированы?
+                .d-grid
+                  = link_to 'Войти', login_path, class: 'btn text-light secondary-bg'
+    / Footer
+    %footer.py-5.bg-dark
+      .container.px-4
+        %p.m-0.text-center.text-white Copyright © Evrone 2021

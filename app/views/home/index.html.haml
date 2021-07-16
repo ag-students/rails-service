@@ -1,0 +1,50 @@
+!!!
+%html{ lang: 'ru' }
+  %head
+    %meta{ charset: 'utf-8' }/
+    %meta{ content: 'width=device-width, initial-scale=1, shrink-to-fit=no', name: 'viewport' }/
+    %title Russian QR-Code
+    %link{ href: 'css/home.css', rel: 'stylesheet' }/
+  %body#page_top
+    / Navigation
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top#main_nav
+      .container.px-4
+        %a.navbar-brand{ href: '#page_top' } Russian QR-Code
+        %button.navbar-toggler{ 'aria-controls': 'navbar_responsive',
+          'aria-expanded': 'false',
+          'aria-label': 'Toggle navigation',
+          'data-bs-target': '#navbar_responsive',
+          'data-bs-toggle': 'collapse',
+          type: 'button' }
+          %span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbar_responsive
+          %ul.navbar-nav.ms-auto
+            %li.nav-item
+              %a.nav-link{ href: '/signup' } Зарегистрироваться
+            %li.nav-item
+              %a.nav-link{ href: '/login' } Войти
+    / Header
+    %header.bg-primary.bg-gradient.text-white
+      .container.px-4.text-center
+        %h1.fw-bolder Добро пожаловать на главную страницу!
+        %p.lead Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum venenatis erat
+        %a.btn.btn-lg.btn-light{ href: '' } Lorem ipsum!
+    / About section
+    %section#about
+      .container.px-4
+        .row.gx-4.justify-content-center
+          .col-lg-8
+            %h2 Об этой странице
+            %p.lead Данная страница является отправной точкой нашего нового приложения.
+    / Services section
+    %section.bg-light#services
+      .container.px-4
+        .row.gx-4.justify-content-center
+          .col-lg-8
+            %h2 Услуги, которые мы предлагаем
+            %p.lead В данном блоке необходимо описать суть нашего приложения,
+              чтобы будущий пользователь мог понять зачем он сюда пришел.
+    / Footer
+    %footer.py-5.bg-dark
+      .container.px-4
+        %p.m-0.text-center.text-white Copyright © Evrone 2021
