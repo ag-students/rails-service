@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   get '/signup' => 'signup#create'
 
   root to: 'home#index'
-
 end
