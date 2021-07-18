@@ -1,0 +1,24 @@
+type: object
+required:
+- id
+- surname
+- name
+- gender
+- birthday
+properties:
+  id:
+    type: string
+    format: uuid
+  surname:
+    type: string
+  name:
+    type: string
+  middlename:
+    type: string
+  gender:
+    type: string
+  birthday:
+    type: string
+    format: date
+  phone:
+    type: integer

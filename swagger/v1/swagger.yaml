@@ -1,0 +1,51 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/k8s":
+    get:
+      summary: Connection
+      tags:
+      - K8s
+      responses:
+        '200':
+          description: good connection to db
+components:
+  schemas:
+    Models::Profile:
+      type: object
+      required:
+      - id
+      - surname
+      - name
+      - gender
+      - birthday
+      properties:
+        id:
+          type: string
+          format: uuid
+        surname:
+          type: string
+        name:
+          type: string
+        middlename:
+          type: string
+        gender:
+          type: string
+        birthday:
+          type: string
+          format: date
+        phone:
+          type: integer
+    Shared::ErrorResponse:
+      type: object
+      required:
+      - title
+      - status
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
