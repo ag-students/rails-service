@@ -1,0 +1,7 @@
+DatabaseConsistencySettings:
+  color: true
+
+DatabaseConsistencyCheckers:
+  BelongsToPresenceChecker:
+    enabled: false
+
