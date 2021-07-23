@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe 'k8s', swagger_doc: 'v1/swagger.yaml', type: :request do
+RSpec.describe 'k8s', type: :request do
   path '/k8s' do
     get 'Connection' do
       tags 'K8s'
