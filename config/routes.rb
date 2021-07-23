@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+
   root to: 'base#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  if Rails.env.development?
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+  end
+
+  get '/k8s' => 'k8s#healthz'
 end

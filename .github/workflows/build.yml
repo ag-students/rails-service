@@ -67,7 +67,7 @@ jobs:
           RAILS_SERVICE_DATABASE_PASSWORD: password
         run: |
           bundle exec rake db:setup
-          COVERAGE=true bundle exec rspec  --require rails_helper
+          COVERAGE=true bundle exec rspec  --require rails_helper --force-color
 
       - name: Upload Code Coverage
         uses: actions/upload-artifact@v2
@@ -141,7 +141,7 @@ jobs:
 
       - name: Run Haml-lint
         run:
-          bundle exec haml-lint
+          bundle exec haml-lint --color
 
       - name: Run Traceroute
         run:
