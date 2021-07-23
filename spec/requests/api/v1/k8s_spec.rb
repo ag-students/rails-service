@@ -9,7 +9,6 @@ RSpec.describe 'k8s', swagger_doc: 'v1/swagger.yaml', type: :request do
       consumes 'application/json'
 
       response '200', 'good connection to db' do
-        let(:code) { K8sController.healthz }
         run_test!
       end
     end
