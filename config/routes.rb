@@ -15,4 +15,10 @@ Rails.application.routes.draw do
   end
 
   get '/k8s' => 'k8s#healthz'
+
+  namespace :api, format: %i[json] do
+    namespace :v1 do
+      resource :profile, only: %i[show update]
+    end
+  end
 end

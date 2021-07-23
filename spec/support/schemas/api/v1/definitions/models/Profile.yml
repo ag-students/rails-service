@@ -1,24 +1,37 @@
 type: object
 required:
-- id
-- surname
-- name
-- gender
-- birthday
+  - id
+  - type
+  - attributes
 properties:
   id:
     type: string
-    format: uuid
-  surname:
+  type:
     type: string
-  name:
-    type: string
-  middlename:
-    type: string
-  gender:
-    type: string
-  birthday:
-    type: string
-    format: date
-  phone:
-    type: integer
+  attributes:
+    type: object
+    required:
+      - name
+      - surname
+      - middlename
+      - gender
+      - birthday
+      - phone
+      - email
+  properties:
+    name:
+      type: string
+    surname:
+      type: string
+    middlename:
+      type: string
+    gender:
+      type: string
+    birthday:
+      type: string
+      format: date
+    phone:
+      type: string
+    email:
+      type: string
+      format: email

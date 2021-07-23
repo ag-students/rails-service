@@ -15,6 +15,10 @@ RSpec.configure do |config|
         title:   'API V1',
         version: 'v1'
       },
+      host:       ENV.fetch('HOST', 'localhost'),
+      schemes:    [ENV.fetch('PROTOCOL', 'http')],
+      consumes:   ['application/vnd.api+json'],
+      produces:   ['application/vnd.api+json'],
       paths:      {},
       components: {
         schemas: RswagHelper.parse_definitions('spec/support/schemas/api/v1')
