@@ -3,7 +3,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'Profile', type: :request do
-  include_context 'when the user is logged in'
+  # include_context 'when the user is logged in'
 
   let(:user) { create(:user, :with_profile) }
 
