@@ -49,7 +49,17 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
 
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
 Style/Documentation:
+  Enabled: false
+
+
+Style/MultilineBlockChain:
   Enabled: false
 
 Metrics/BlockLength:
